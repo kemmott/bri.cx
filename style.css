@@ -1,0 +1,120 @@
+body{ 
+	margin:0 100px;
+	padding:0 0px 0 130px;
+	font: 12px/18px 'Lucida Sans', sans-serif;
+} 
+
+#header{
+	height:60px;
+}
+
+img.feed{
+	background: #ffffff url('feed-icon_orange-12px+.png');
+	border:0px solid #fff;
+	height:12px;
+	width:12px;
+	margin-left:2px;
+	vertical-align: sub;
+}
+
+#wrapper{
+	background-color:#fff;
+	float:left;
+	width:100%;	
+	border-left:500px solid #fff; /* The width and color of the left rail */
+	border-right:180px solid #fff; /* The width and color of the right rail */
+	margin-left:-130px;
+	margin-right:-160px;
+	display:inline; /* So IE plays nice */
+}
+
+#twitter{
+	float:left;
+	width:500px;
+	margin-left:-510px;
+	position:relative;
+}
+
+#middle{
+	float:left;
+	width:1000px;
+	margin-right:-100%;
+}
+
+#flickr{
+	float:left;
+	width:180px;
+	margin-left: 0px;
+	position:relative;
+}
+
+#flickrphotos a img,
+#flickrfamphotos a img {
+	width:160px;
+	border:0px;
+	padding:5px;
+}
+
+#blog{
+	float:left;
+	width:500px;
+	margin-right:-100%;
+}
+
+#flickrfam{
+	float:right;
+	width:160px;
+	margin-right: 20px;
+	position:relative;
+}
+
+#misc{
+	float:right;
+	width:160px;
+	margin-right:-160px;
+	position:relative;
+}
+
+#zootool-badge ul{
+	list-style-type: none;
+	margin-left:0px;
+	padding-left: 0px  
+}
+
+div.feedburnerFeedBlock ul{
+	list-style-type: none;
+	margin-left:0px;
+	padding-left: 0px  
+}
+
+#kevanemmottcomavpifod4g139f1ak0sgvfhsqk4 ul li,
+#BlacksmithKevanEmmottgtv8ipkurvl5fqblcrsj2f5te4 ul li {
+	margin-bottom:20px;
+	margin-right:180px;
+}
+
+span.headline{
+	font-weight:bold;
+}
+
+div.twtr-hd, div.twtr-ft, #creditfooter, div.f{
+	display:none;
+}
+
+/* 
+@media (max-width: 800px) {
+	#flickr {
+		clear:both;
+		float:right;
+	}
+	#flickrfam {
+		clear:both;
+		float:right;
+	}
+	#kevanemmottcomavpifod4g139f1ak0sgvfhsqk4 ul li,
+	#BlacksmithKevanEmmottgtv8ipkurvl5fqblcrsj2f5te4 ul li {
+		margin-bottom:20px;
+		margin-right:180px;
+	}
+}
+*/

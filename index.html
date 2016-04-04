@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html>
+<head>
+<title>bri.cx</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+<script type="text/javascript" src="http://www.google.com/jsapi?key=ABQIAAAAskSD0YEcOiIrFylUhdxDDhR-z7PfX9mizP7ZUqJiUyRLiGgzohRgimEXWLWojQcBqYOJ_3hfF8IVxg"></script>
+<script type="text/javascript" src="http://www.google.com/reader/ui/publisher-en.js"></script>
+<script type="text/javascript" src="http://use.typekit.com/boz6idw.js"></script>
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+
+<script type="text/javascript" src="jquery.flickr.js"></script>
+<script type="text/javascript" src="jquery.flickrsets.js"></script>
+
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+<script type="text/javascript">
+    google.load("jquery", "1.4.2");
+</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27221113-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
+
+</script>
+
+</head>
+<body>
+    <div id="header">
+        <h1><a href="/">bri.cx</a></h1>
+	<p>My name is <a href="http://kevan.emmott.com/">Kevan Emmott</a>,
+	and bri.cx tracks the daily construction of my life. See also an <a href="http://kemmott.com">archive</a> of my posts to twitter and a <a href="/now">lifestream</a>.</p>
+    </div>
+    <div id="wrapper"> 
+	    <div id="twitter">
+            <h3><a href="http://twitter.com/kemmott">twitter.com/kemmott</a> <a href="http://twitter.com/statuses/user_timeline/11280.rss"><img class="feed" src="clear1x1.gif"/></a></h3>
+            <div id="twitterSearch"></div>
+
+<a class="twitter-timeline" href="https://twitter.com/kemmott" data-widget-id="454123911773319168">Tweets by @kemmott</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+		<div id="middle"> 
+        
+            <div id="flickr">
+                <h3><a href="http://flic.kr/kevan">flic.kr/kevan</a> <a href="http://api.flickr.com/services/feeds/photos_public.gne?id=41894150026@N01&lang=en-us&format=rss_200"><img class="feed" src="clear1x1.gif"/></a></h3>
+                <div id="flickrphotos"></div>
+                <script type='text/javascript'>
+                $(document).ready( function() {
+                    getFlickr('41894150026@N01', 'flickrphotos', 8);
+               });
+              </script>
+            </div>
+            
+            <div id="blog">
+                <h3><a href="http://kevan.emmott.com/blog">/blog</a> <a href="http://feeds.feedburner.com/kevanemmottcom"><img class="feed" src="clear1x1.gif"/></a></h3>
+                <script src="http://feeds.feedburner.com/kevanemmottcom?format=sigpro" type="text/javascript"></script>
+
+            </div>
+            
+            <div id="flickrfam">
+                <h3><a href="http://flic.kr/emmott/sets">flic.kr/emmott/sets</a> <a href="http://feeds.feedburner.com/flickr-emmott-sets"><img class="feed" src="clear1x1.gif"/></a></h3>
+            <div id="flickrfamphotos"></div>
+	            <script type='text/javascript'>
+                $(document).ready( function() {
+                    getFlickrSets('12956373@N00', 'flickrfamphotos', 8);
+               });
+              </script>
+    
+            </div>
+            
+        </div>
+            
+        </div>
+    </div>
+</body>
+</html>

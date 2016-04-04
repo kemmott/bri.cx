@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+<head>
+  <title>Clarendon WMATA</title>
+
+  <meta name='viewport' content='initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+  <meta name='apple-mobile-web-app-capable' content='yes' />
+
+  <link rel='stylesheet' type='text/css' href='css/style.css' />
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script language="javascript">
+
+function format(num) {
+    var xx = num.toString();
+    if (xx.length === 1) {
+        return "0" + xx;
+    } else {
+        return xx;
+    }
+}
+
+function update() {
+	var rightnow = new Date();
+  var API_KEY = "zehezb3vhtbp93hpr36ry9eq";
+	var route38b1,route38b2,routeorangeeast1,routeorangeeast2,routeorangewest1,routeorangewest2,routesilvereast1,routesilvereast2,routesilverwest1,routesilverwest2;
+	$(header).text("Transit Info ("+rightnow.getHours()+":"+format(rightnow.getMinutes())+")")
+	bus_38b_url = document.URL.substring(0,document.URL.lastIndexOf('/')) + '/wmataapi/NextBusService.svc/json/jPredictions?StopID=6000634&api_key='+API_KEY+'&subscription-key='+API_KEY;
+	clarendon_url = document.URL.substring(0,document.URL.lastIndexOf('/')) + '/wmataapi/StationPrediction.svc/json/GetPrediction/K02?api_key='+API_KEY+'&subscription-key='+API_KEY;
+	$.getJSON(bus_38b_url, function(data) {
+		route38b1 = data.Predictions[0].Minutes;
+		route38b2 = data.Predictions[1].Minutes;
+
+		if (route38b1=="Arriving") {
+			$(stop_1).children(".arrivals").children(".arrival").first().text(route38b1);
+		} else {
+			$(stop_1).children(".arrivals").children(".arrival").first().text(route38b1+" min");
+		}
+
+		if (route38b2==null) {
+			$(stop_1).children(".arrivals").children(".arrival").next().text("");
+		} else {
+			$(stop_1).children(".arrivals").children(".arrival").next().text(route38b2+"min");
+		}
+
+	})
+	$.getJSON(clarendon_url, function(data) {
+		for (var train in data.Trains) {
+			if (data.Trains[train].Line=="SV") {
+				if (data.Trains[train].DestinationCode=="N06") {
+					if (routesilverwest1==null) {
+						routesilverwest1=data.Trains[train].Min;
+					} else {
+						routesilverwest2=data.Trains[train].Min;
+					}
+				} else {
+					if (routesilvereast1==null) {
+						routesilvereast1=data.Trains[train].Min;
+					} else {
+						routesilvereast2=data.Trains[train].Min;
+					}
+				}
+			} else if (data.Trains[train].Line=="OR") {
+				if (data.Trains[train].DestinationCode=="K08") {
+					if (routeorangewest1==null) {
+						routeorangewest1=data.Trains[train].Min;
+					} else {
+						routeorangewest2=data.Trains[train].Min;
+					}
+				} else {
+					if (routeorangeeast1==null) {
+						routeorangeeast1=data.Trains[train].Min;
+					} else {
+						routeorangeeast2=data.Trains[train].Min;
+					}
+				}
+			}
+		}
+
+		if (routeorangewest1==null) {
+			$(stop_2).children(".arrivals").children(".arrival").first().text("");
+		} else if (routeorangewest1=="ARR"||routeorangewest1=="BRD") {
+			$(stop_2).children(".arrivals").children(".arrival").first().text(routeorangewest1);
+		} else {
+			$(stop_2).children(".arrivals").children(".arrival").first().text(routeorangewest1+" min");
+		}
+
+		if (routeorangewest2==null) {
+			$(stop_2).children(".arrivals").children(".arrival").next().text("");
+		} else {
+			$(stop_2).children(".arrivals").children(".arrival").next().text(routeorangewest2+" min");
+		}
+
+		if (routeorangeeast1==null) {
+			$(stop_3).children(".arrivals").children(".arrival").first().text("");
+		} else if (routeorangeeast1=="ARR"||routeorangeeast1=="BRD") {
+			$(stop_3).children(".arrivals").children(".arrival").first().text(routeorangeeast1);
+		} else {
+			$(stop_3).children(".arrivals").children(".arrival").first().text(routeorangeeast1+" min");
+		}
+
+		if (routeorangeeast2==null) {
+			$(stop_3).children(".arrivals").children(".arrival").next().text("");
+		} else {
+			$(stop_3).children(".arrivals").children(".arrival").next().text(routeorangeeast2+" min");
+		}
+
+		if (routesilverwest1==null) {
+			$(stop_4).children(".arrivals").children(".arrival").first().text("");
+		} else if (routesilverwest1=="ARR"||routesilverwest1=="BRD") {
+			$(stop_4).children(".arrivals").children(".arrival").first().text(routesilverwest1);
+		} else {
+			$(stop_4).children(".arrivals").children(".arrival").first().text(routesilverwest1+" min");
+		}
+
+		if (routesilverwest2==null) {
+			$(stop_4).children(".arrivals").children(".arrival").next().text("");
+		} else {
+			$(stop_4).children(".arrivals").children(".arrival").next().text(routesilverwest2+" min");
+		}
+
+		if (routesilvereast1==null) {
+			$(stop_5).children(".arrivals").children(".arrival").first().text("");
+		} else if (routesilvereast1=="ARR"||routesilvereast1=="BRD") {
+			$(stop_5).children(".arrivals").children(".arrival").first().text(routesilvereast1);
+		} else {
+			$(stop_5).children(".arrivals").children(".arrival").first().text(routesilvereast1+" min");
+		}
+
+		if (routesilvereast2==null) {
+			$(stop_5).children(".arrivals").children(".arrival").next().text("");
+		} else {
+			$(stop_5).children(".arrivals").children(".arrival").next().text(routesilvereast2+" min");
+		}
+
+	})
+}
+
+function startUpdateTimer() {
+	update();
+	setTimeout(startUpdateTimer, 30000);
+}
+
+$(function() {
+	startUpdateTimer();
+})
+
+  </script>
+</head>
+<body>
+<div id='header'>Transit Info as of: TIME NOW</div>
+    <div id='trimet' class='small'>
+        <div id='stops'>
+			<div id='stop_1' class='stop westbound'>
+				<div class='details'>
+					<header class='route'>38B</header>
+					<div class='dir-bubble' style="">W</div>
+					<div class='description'>Wilson &amp; N Herndon</div>
+					<div class='direction'>Westbound</div>
+					<div class='locid'>1</div>
+				</div>
+				<div class='arrivals'>
+					<div class='arrival'></div>
+					<div class='arrival'></div>
+				</div>
+			</div>
+			<div id='stop_2' class='stop westbound'>
+				<div class='details'>
+					<header id='orange' class='route'>OR</header>
+					<div id='orange' class='dir-bubble' style="">W</div>
+					<div class='description'>Westbound</div>
+					<div class='direction'>Westbound</div>
+					<div class='locid'>2</div>
+				</div>
+				<div class='arrivals'>
+					<div class='arrival'></div>
+					<div class='arrival'></div>
+				</div>
+			</div>
+			<div id='stop_3' class='stop eastbound'>
+				<div class='details'>
+					<header id='orange' class='route'>OR</header>
+					<div id='orange' class='dir-bubble' style="">E</div>
+					<div class='description'>Eastbound</div>
+					<div class='direction'>Eastbound</div>
+					<div class='locid'>3</div>
+				</div>
+				<div class='arrivals'>
+					<div class='arrival'></div>
+					<div class='arrival'></div>
+				</div>
+			</div>
+			<div id='stop_4' class='stop westbound'>
+				<div class='details'>
+					<header id='silver' class='route'>SV</header>
+					<div id='silver' class='dir-bubble' style="">W</div>
+					<div class='description'>Westbound</div>
+					<div class='direction'>Westbound</div>
+					<div class='locid'>2</div>
+				</div>
+				<div class='arrivals'>
+					<div class='arrival'></div>
+					<div class='arrival'></div>
+				</div>
+			</div>
+			<div id='stop_5' class='stop eastbound'>
+				<div class='details'>
+					<header id='silver' class='route'>SV</header>
+					<div id='silver' class='dir-bubble' style="">E</div>
+					<div class='description'>Eastbound</div>
+					<div class='direction'>Eastbound</div>
+					<div class='locid'>3</div>
+				</div>
+				<div class='arrivals'>
+					<div class='arrival'></div>
+					<div class='arrival'></div>
+				</div>
+			</div>
+        </div>
+    </div>
+    <div id='footer'>Want more bus lines listed?<br/>Ask Kevan.</div>
+</body>
+</html>
